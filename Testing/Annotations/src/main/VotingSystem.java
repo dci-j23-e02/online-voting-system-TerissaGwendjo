@@ -3,8 +3,12 @@ import java.util.Map;
 
 public class VotingSystem {
 
-    private Map<String, User> users;
-    private Map<String, Candidate> candidates;
+    Map<String, User> users;
+    Map<String, Candidate> candidates;
+
+    public void addCandidate(String name) {
+        candidates.put(name, new Candidate(name));
+    }
 
     public VotingSystem() {
         this.users = new HashMap<>();
@@ -14,7 +18,7 @@ public class VotingSystem {
     //User Registration method
     public void registerUser (String username, String password) {
         users.put(username,new User(username,password));
-        System.out.println("User registered Successfully");
+        System.out.println(username + " registered Successfully");
     }
 
     // User login method
@@ -34,7 +38,10 @@ public class VotingSystem {
             users.get(username).setVoted(true);
             candidates.get(name).incrementVotes();
             System.out.println("Vote cast successfully");
-        } else {
+        } else if (users.containsKey(username) && users.get(username).hasVoted()) {
+            System.out.println("User has already voted. Cannot vote again.");
+        }
+        else {
             System.out.println("Invalid vote");
         }
     }

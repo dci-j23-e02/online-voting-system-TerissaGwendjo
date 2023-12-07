@@ -2,7 +2,7 @@ public class Candidate {
     String name;
     int votes; //total number of votes
 
-    public Candidate(String name, int votes) {
+    public Candidate(String name) {
         this.name = name;
         this.votes = 0;
     }
